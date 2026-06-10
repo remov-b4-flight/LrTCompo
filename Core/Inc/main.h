@@ -32,7 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //! @defgroup Define LrTMAX version.
-#define USBD_DEVICE_VER	0x0074
+#define USBD_DEVICE_VER	0x0075
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -63,7 +63,7 @@ void Msg_Print();
 
 /* Private defines -----------------------------------------------------------*/
 #define TIM_PERIOD_NPIX 279
-#define Lr_PRODUCT "LrTMAX"
+#define Lr_PRODUCT "LrTCompo"
 #define PWM_HI 38
 #define TIM_PERIOD_RGBLED 24576
 #define PWM_LO 15

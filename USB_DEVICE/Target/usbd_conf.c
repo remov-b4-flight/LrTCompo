@@ -23,6 +23,7 @@
 #include "stm32f0xx_hal.h"
 #include "usbd_def.h"
 #include "usbd_core.h"
+#include "usbd_hid.h"
 
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
@@ -288,9 +289,6 @@ static void PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
-/* USER CODE BEGIN DisconnectCallback LrTMAX*/
-	LrState = LR_USB_LINK_LOST;
-/* USER CODE END DisconnectCallback LrTMAX*/
   USBD_LL_DevDisconnected((USBD_HandleTypeDef*)hpcd->pData);
 }
 
@@ -331,6 +329,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
   HAL_PCD_RegisterCallback(&hpcd_USB_FS, HAL_PCD_DISCONNECT_CB_ID, PCD_DisconnectCallback);
+
   HAL_PCD_RegisterDataOutStageCallback(&hpcd_USB_FS, PCD_DataOutStageCallback);
   HAL_PCD_RegisterDataInStageCallback(&hpcd_USB_FS, PCD_DataInStageCallback);
   HAL_PCD_RegisterIsoOutIncpltCallback(&hpcd_USB_FS, PCD_ISOOUTIncompleteCallback);
@@ -344,6 +343,9 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
   HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_IN_EP,	PCD_SNG_BUF, MIDI_IN_PMA);
   HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData, MIDI_OUT_EP, PCD_SNG_BUF, MIDI_OUT_PMA);
   /* USER CODE END EndPoint_Configuration */
+  /* USER CODE BEGIN EndPoint_Configuration_HID */
+  HAL_PCDEx_PMAConfig((PCD_HandleTypeDef*)pdev->pData , 0x81 , PCD_SNG_BUF, 0x100);
+  /* USER CODE END EndPoint_Configuration_HID */
   return USBD_OK;
 }
 

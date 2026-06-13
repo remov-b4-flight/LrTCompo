@@ -42,7 +42,7 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1049045556" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Middlewares/USBMIDI/Inc"/>
-									<listOptionValue builtIn="false" value="../Middlewares/CompositeBuilder/Inc"/>
+									<listOptionValue builtIn="false" value="../Middlewares/USBCOMPO/Inc"/>
 									<listOptionValue builtIn="false" value="../USB_DEVICE/Target"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F0xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
@@ -77,10 +77,15 @@
 							<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec.514181889" name="MCU Output Converter Motorola S-rec with symbols" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec"/>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.911644036.1926455203" name="usbd_hid.c" rcbsApplicability="disable" resourcePath="Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c" toolsToInvoke="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.1838072830.343667835">
+						<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.1838072830.343667835" name="MCU GCC Compiler" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.1838072830"/>
+					</fileInfo>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.911644036.2053315490" name="usbd_hid.h" rcbsApplicability="disable" resourcePath="Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h" toolsToInvoke=""/>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.911644036.675104796" name="usbd_composite_builder.h" rcbsApplicability="disable" resourcePath="Middlewares/CompositeBuilder/Inc/usbd_composite_builder.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h|ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
+						<entry excluding="CompositeBuilder|CompositeBuilder/Src/usbd_composite_builder.c|CompositeBuilder/Inc/usbd_composite_builder.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="USB_DEVICE"/>
 					</sourceEntries>
 				</configuration>
@@ -159,10 +164,11 @@
 							<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec.462153545" name="MCU Output Converter Motorola S-rec with symbols" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec"/>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.release.233801121.1774216994" name="usbd_composite_builder.h" rcbsApplicability="disable" resourcePath="Middlewares/CompositeBuilder/Inc/usbd_composite_builder.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h|ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
+						<entry excluding="CompositeBuilder|CompositeBuilder/Inc/usbd_composite_builder.h|CompositeBuilder/Src/usbd_composite_builder.c|ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h|ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="USB_DEVICE"/>
 					</sourceEntries>
 				</configuration>

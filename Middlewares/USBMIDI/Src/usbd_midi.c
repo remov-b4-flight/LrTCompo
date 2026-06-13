@@ -85,7 +85,7 @@ static uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
 static uint8_t	USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
 
-	USBD_MIDI_ItfTypeDef *pmidi = (USBD_MIDI_ItfTypeDef *)(pdev->pUserData);
+	USBD_MIDI_ItfTypeDef *pmidi = (USBD_MIDI_ItfTypeDef *)(pdev->pMIDIUserData);
 	uint16_t USB_Rx_Cnt = ((PCD_HandleTypeDef*)pdev->pData)->OUT_ep[epnum].xfer_count;
 
 	pmidi->pIf_MidiRx((uint8_t *)&USB_Rx_Buffer, USB_Rx_Cnt);	//call MIDI_DataRx()
@@ -104,7 +104,7 @@ uint8_t USBD_MIDI_RegisterInterface(USBD_HandleTypeDef *pdev, USBD_MIDI_ItfTypeD
 	uint8_t ret = USBD_FAIL;
 
 	if(fops != NULL){
-		pdev->pUserData= fops;
+		pdev->pMIDIUserData= fops;
 		ret = USBD_OK;
 	}
 

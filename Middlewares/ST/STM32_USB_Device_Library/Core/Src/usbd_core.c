@@ -458,12 +458,19 @@ USBD_StatusTypeDef USBD_LL_Reset(USBD_HandleTypeDef *pdev)
   pdev->ep0_state = USBD_EP0_IDLE;
   pdev->dev_config = 0U;
   pdev->dev_remote_wakeup = 0U;
-
+/* USER CODE BEGIN 0 LrTMAX*/
+#if 0
   if (pdev->pClassData)
   {
     pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
   }
-
+#else
+  if (pdev->pMIDIClassData && pdev->pHIDClassData)
+  {
+    pdev->pClass->DeInit(pdev, (uint8_t)pdev->dev_config);
+  }
+#endif
+/* USER CODE BEGIN 0 LrTMAX*/
   return USBD_OK;
 }
 

@@ -255,8 +255,17 @@ typedef struct _USBD_HandleTypeDef
   USBD_SetupReqTypedef    request;
   USBD_DescriptorsTypeDef *pDesc;
   USBD_ClassTypeDef       *pClass;
+/* USER CODE BEGIN 0 LrTMAX*/
+#if 0
   void                    *pClassData;
   void                    *pUserData;
+#else
+  void                    *pMIDIClassData;
+  void                    *pMIDIUserData;
+  void                    *pHIDClassData;
+  void                    *pHIDUserData;
+#endif
+/* USER CODE END 0 LrTMAX*/
   void                    *pData;
 } USBD_HandleTypeDef;
 

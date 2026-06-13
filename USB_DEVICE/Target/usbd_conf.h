@@ -68,7 +68,13 @@
   */
 
 /*---------- -----------*/
+/* USER CODE BEGIN 0 LrTMAX*/
+#if 0
 #define USBD_MAX_NUM_INTERFACES     1
+#else
+#define USBD_MAX_NUM_INTERFACES     2
+#endif
+/* USER CODE END 0 LrTMAX*/
 /*---------- -----------*/
 #define USBD_MAX_NUM_CONFIGURATION     1
 /*---------- -----------*/

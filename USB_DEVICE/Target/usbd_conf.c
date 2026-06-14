@@ -599,13 +599,8 @@ void USBD_LL_Delay(uint32_t Delay)
 void *USBD_static_malloc(uint32_t size)
 {
   /* USER CODE BEGIN USBD_static_malloc LrTMAX*/
-#if 0
   static uint32_t mem[(sizeof(USBD_HID_HandleTypeDef)/4)+1];/* On 32-bit boundary */
   return mem;
-#else
-  return NULL;
-#endif
-  /* USER CODE END USBD_static_malloc LrTMAX*/
 }
 
 /**

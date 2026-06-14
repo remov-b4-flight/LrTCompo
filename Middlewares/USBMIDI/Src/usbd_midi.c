@@ -15,10 +15,10 @@
 #include "usbd_ctlreq.h"
 #include "stm32f0xx_hal.h"
 
-static uint8_t	USBD_MIDI_Init (USBD_HandleTypeDef *pdev, uint8_t cfgidx);
-static uint8_t	USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx);
-static uint8_t	USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum);
-static uint8_t	USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
+uint8_t	USBD_MIDI_Init (USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t	USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t	USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum);
+uint8_t	USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 
 static uint8_t	*USBD_MIDI_GetCfgDesc (uint16_t *length);
 USBD_HandleTypeDef *pInstance = NULL;
@@ -47,7 +47,7 @@ USBD_ClassTypeDef USBD_MIDI =
 /* USB MIDI device Configuration Descriptor */
 __ALIGN_BEGIN uint8_t USBD_MIDI_CfgDesc[USB_MIDI_CONFIG_DESC_SIZE] __ALIGN_END =
 {
-	0x09, CONFIG, 83, 0, NUM_INTF, CONFIG1, UNUSED_DESC_IDX, (BUSPOWERED | REMOTE_WAKEUP), MIDI_POWER,
+	0x09, CONFIG, 83, 0, 1, CONFIG1, UNUSED_DESC_IDX, (BUSPOWERED | REMOTE_WAKEUP), MIDI_POWER,
 	0x09, INTERFACE, INTF0, ALTER0, MS_NUM_EP, AUDIO, MIDI_STREAM, MIDI_UNUSED, MIDI_UNUSED,
 	0x07, CS_INTERFACE, HEADER, 0x00, 0x01, 37, 0,
 	0x06, CS_INTERFACE, MIDI_IN_JACK, MIDI_JTYPE_ENB, MIDI_JACK_NO_IN_ENB, UNUSED_DESC_IDX,
@@ -60,7 +60,7 @@ __ALIGN_BEGIN uint8_t USBD_MIDI_CfgDesc[USB_MIDI_CONFIG_DESC_SIZE] __ALIGN_END =
 	0x05, CS_ENDPOINT, MS_GENERAL, 0x01, MIDI_JACK_NO_OUT_ENB,
 };
 
-static uint8_t USBD_MIDI_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx){
+uint8_t USBD_MIDI_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx){
 	pInstance = pdev;
 	USBD_LL_OpenEP(pdev,MIDI_IN_EP,USBD_EP_TYPE_BULK,MIDI_DATA_IN_PACKET_SIZE);
 	USBD_LL_OpenEP(pdev,MIDI_OUT_EP,USBD_EP_TYPE_BULK,MIDI_DATA_OUT_PACKET_SIZE);
@@ -68,21 +68,21 @@ static uint8_t USBD_MIDI_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx){
 	return 0;
 }
 
-static uint8_t USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx){
+uint8_t USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx){
 	pInstance = NULL;
 	USBD_LL_CloseEP(pdev,MIDI_IN_EP);
 	USBD_LL_CloseEP(pdev,MIDI_OUT_EP);
 	return 0;
 }
 
-static uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
-#if 0 //Unused for LrTMAX
+uint8_t USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum){
+#if 0 //Unused for LrTMAX, TX is always use LL functions
 		pmidi->pIf_MidiTx((uint8_t *)&USB_Tx_Buffer, USB_Tx_Cnt);	//call MIDI_DataTx()
 #endif
 	return USBD_OK;
 }
 
-static uint8_t	USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
+uint8_t	USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
 
 	USBD_MIDI_ItfTypeDef *pmidi = (USBD_MIDI_ItfTypeDef *)(pdev->pMIDIUserData);

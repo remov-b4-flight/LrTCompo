@@ -260,7 +260,7 @@ int main(void)
 	if ((GPIOA->IDR & SWMASK) == SWMASK ) {
 		LrState = LR_USB_DFU;
 	} else {
-		// MX_USB_DEVICE_Init() must be delayed until here for launch DFU.
+		// MX_USB_DEVICE_Init is must be delayed until here for launch DFU.
 		MX_USB_DEVICE_Init();
 		LrState = LR_USB_NOLINK;
 	}

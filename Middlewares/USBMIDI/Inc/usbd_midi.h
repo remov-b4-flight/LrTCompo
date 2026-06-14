@@ -36,7 +36,7 @@
 
 typedef struct _USBD_MIDI_ItfTypeDef{
 	uint16_t (*pIf_MidiRx)    (uint8_t *msg, uint16_t length);
-	uint16_t (*pIf_MidiTx)    (uint8_t *msg, uint16_t length);
+	uint16_t (*pIf_MidiTx)    (uint8_t *msg, uint16_t length);	// un-used?
 }USBD_MIDI_ItfTypeDef;
 
 extern USBD_ClassTypeDef	USBD_MIDI;
@@ -44,7 +44,11 @@ extern USBD_ClassTypeDef	USBD_MIDI;
 
 #define UNUSED_DESC_IDX	0
 
-uint8_t  USBD_MIDI_RegisterInterface  (USBD_HandleTypeDef   *pdev, USBD_MIDI_ItfTypeDef *fops);
+uint8_t USBD_MIDI_RegisterInterface (USBD_HandleTypeDef   *pdev, USBD_MIDI_ItfTypeDef *fops);
+uint8_t	USBD_MIDI_Init (USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t	USBD_MIDI_DeInit (USBD_HandleTypeDef *pdev, uint8_t cfgidx);
+uint8_t	USBD_MIDI_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum);
+uint8_t	USBD_MIDI_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 
 #ifdef __cplusplus
 }
